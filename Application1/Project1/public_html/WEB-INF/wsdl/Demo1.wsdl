@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="urn:Demo1" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:Demo1"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tt="urn:Demo1">
+  <types>
+    <xsd:schema targetNamespace="urn:Demo1/types" xmlns:tt="urn:Demo1" elementFormDefault="qualified"/>
+    <xsd:element name="FXRATES">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ROW" type="ROW" maxOccurs="unbounded" minOccurs="0"/> 
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="ROW">
+                    <xsd:sequence>
+                         <xsd:element name="IMPORT_BATCH_ID" type="xsd:int" default="0"/>
+                         <xsd:element name="RATES_IMPORT_ID" type="xsd:int" default="0"/>
+                         <xsd:element name="FROM_CURRENCY" type="xsd:string"/>
+                         <xsd:element name="TO_CURRENCY" type="xsd:string"/>
+                         <xsd:element name="FROM_CONVERSION_DATE" type="xsd:string"/>
+                         <xsd:element name="TO_CONVERSION_DATE" type="xsd:string"/>
+                         <xsd:element name="USER_CONVERSION_TYPE" type="xsd:string"/>
+                         <xsd:element name="CONVERSION_RATE" type="xsd:float" default="0.0"/>
+                         <xsd:element name="MODE_FLAG" type="xsd:string"/>
+                         <xsd:element name="CREATED_BY" type="xsd:string"/>
+                         <xsd:element name="CREATION_DATE" type="xsd:string"/>
+                         <xsd:element name="LAST_UPDATE_DATE" type="xsd:string"/>
+                         <xsd:element name="LAST_UPDATED_BY" type="xsd:string"/>
+                         <xsd:element name="ATTRIBUTE1" type="xsd:string"/>
+                         <xsd:element name="ATTRIBUTE2" type="xsd:string"/>
+                         <xsd:element name="ATTRIBUTE3" type="xsd:string"/>
+                         <xsd:element name="ATTRIBUTE4" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+  </types>
+  <message name="RequestRow">
+    <part name="in" element="tt:ROW"/>
+  </message>
+  <message name="ResponseRow">
+    <part name="return" element="tt:ROW"/>
+  </message>
+ <portType name="FXRATES">
+    <operation name="RowInfo">
+      <input message="tns:RequestRow"/>
+      <output message="tns:ResponseRow"/>
+    </operation>
+  </portType>
+</definitions>
